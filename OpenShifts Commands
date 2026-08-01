@@ -1,0 +1,145 @@
+OPEN SHIFT COMMANDS:-
+
+1. Login & Cluster Information
+oc login https://api.cluster.example.com:6443
+oc whoami
+oc whoami --show-token
+oc status
+oc version
+oc cluster-info
+
+
+2. Projects (Namespaces)
+oc projects                 # List projects
+oc project myproject        # Switch project
+oc new-project myproject    # Create new project
+oc delete project myproject # Delete project
+
+
+3. Resources
+oc get pods
+oc get deployments
+oc get services
+oc get routes
+oc get nodes
+oc get pvc
+oc get pv
+oc get all
+
+4. Describe Resources
+oc describe pod <pod-name>
+oc describe deployment <deployment-name>
+oc describe node <node-name>
+
+5. Create Resources
+oc create deployment nginx --image=nginx
+oc expose deployment nginx --port=80
+oc create service clusterip nginx --tcp=80:80
+
+6. Apply & Delete YAML
+oc apply -f deployment.yaml
+oc create -f deployment.yaml
+oc delete -f deployment.yaml
+
+
+7. Pods
+oc get pods
+oc logs <pod-name>
+oc logs -f <pod-name>
+oc exec -it <pod-name> -- /bin/bash
+oc delete pod <pod-name>
+
+
+8. Scaling
+oc scale deployment nginx --replicas=3
+
+
+9. Rollout
+oc rollout status deployment/nginx
+oc rollout history deployment/nginx
+oc rollout undo deployment/nginx
+oc rollout restart deployment/nginx
+
+
+10. Image Commands
+oc import-image
+oc tag
+oc image info <image-name>
+
+
+
+11. Routes
+oc expose svc nginx
+oc get routes
+
+
+12. ConfigMaps & Secrets
+oc create configmap myconfig --from-file=config.txt
+oc create secret generic mysecret --from-literal=password=RedHat123
+oc get configmaps
+oc get secrets
+
+
+13. Storage
+oc get pv
+oc get pvc
+oc describe pvc <pvc-name>
+
+
+14. User & RBAC
+oc adm policy add-role-to-user admin user1
+oc adm policy add-cluster-role-to-user cluster-admin user1
+oc adm policy remove-role-from-user admin user1
+
+
+15. Node Management
+oc get nodes
+oc describe node <node-name>
+oc adm cordon <node-name>
+oc adm uncordon <node-name>
+oc adm drain <node-name> --ignore-daemonsets
+
+
+16. Debugging
+oc debug node/<node-name>
+oc debug pod/<pod-name>
+
+
+17. Events
+oc get events
+oc get events --sort-by=.metadata.creationTimestamp
+
+
+18. Resource Usage
+oc adm top nodes
+oc adm top pods
+
+
+19. Export YAML
+oc get deployment nginx -o yaml
+oc get pod <pod-name> -o yaml
+
+
+20. Delete Resources
+oc delete pod <pod-name>
+oc delete deployment nginx
+oc delete service nginx
+oc delete route nginx
+
+
+
+Useful Shortcuts
+oc get po      # Pods
+oc get svc     # Services
+oc get deploy  # Deployments
+oc get rs      # ReplicaSets
+oc get dc      # DeploymentConfigs
+oc get ns      # Namespaces
+oc get all     # All resources
+
+
+Check Your Current Context
+oc whoami
+oc project
+oc config get-contexts
+oc config current-context
