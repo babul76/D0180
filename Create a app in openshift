@@ -1,0 +1,7 @@
+oc new-project babul --display-name="my first test project"
+oc project                                                                                      #check
+oc create deployment test-app --image=httpd                                                     #namespace
+oc get po                                                                                       #pod status check
+oc adm policy add-scc-to-user anyuid -z default
+oc delete po --all --force
+oc get po                                                                                       #check pod running or not
