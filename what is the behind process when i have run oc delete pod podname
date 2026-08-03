@@ -1,0 +1,32 @@
+what is the behind process when i have run oc delete pod podname
+
+oc delete pod nginx
+
+        │
+        ▼
+API Server
+        │
+        ▼
+Pod marked for deletion
+        │
+        ▼
+Kubelet on Worker Node
+        │
+        ▼
+CRI-O receives stop request
+        │
+        ▼
+SIGTERM sent to container
+        │
+(wait up to grace period)
+        ▼
+SIGKILL (if needed)
+        │
+        ▼
+Network and storage cleaned up
+        │
+        ▼
+Pod removed from etcd
+        │
+        ▼
+ReplicaSet creates a new pod (if managed by a Deployment)
